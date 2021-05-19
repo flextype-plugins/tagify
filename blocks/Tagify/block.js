@@ -5,5 +5,4 @@ $(".js-tagify").each(function() {
                                     var tagifyValue = JSON.parse(e.target.value);
                                     $("input[name=" + tagifyName.replace('__', '') + "]").val(tagifyValue.map(item => item.value).join(','));
                                 });
-    
 });
