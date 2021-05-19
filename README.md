@@ -39,145 +39,148 @@ assetsLoadOnSite: false
 
 # Blocks
 blocks:
-  Trumbowyg:
+  Tagify:
     properties:
-      id: trumbowyg
-      name: trumbowyg
+      id: tagify
+      name: tagify
       
-      # Trumbowyg options
+      # Tagify options
       options:
 
-        # Localization
-        #
-        # If the lang was not found, english values are used by default.
-        lang: en
+        # Tag data Object property which will be displayed as the tag's text. 
+        # Remember to keep "value" property unique.
+        tagTextProp: "value"
 
-        # SVG icons
-        #
-        # A pack of SVG icons is available and enabled by default. 
-        # This file is loaded via XHR request in JavaScript so it is possible the path is not matching with your assets file paths. 
-        # You can change the path of the SVG or disable this feature.
-        #
-        # If you do not want SVG icons, you can set this option to `false`. 
-        # Then, you can add your custom icons by CSS or what you want.
-        svgPath: ../../project/plugins/trumbowyg/blocks/Trumbowyg/dist/fonts/trumbowyg/icons.svg
+        # Placeholder text. 
+        # If this attribute is set on an input/textarea element it will override this setting
+        placeholder: ""
 
-        # Semantic
-        #
-        # Generates a better, more semantic oriented HTML 
-        # (i.e. <em> instead of <i>, <strong> instead of <b>, etc.).
-        semantic:
-          'b': 'strong'
-          'i': 'em'
-          's': 'del'
-          'strike': 'del'
-          'p': 'p'
+        # [RegEx string] split tags by any of these delimiters. 
+        # Example delimeters: ",|.| " (comma, dot or whitespace)
+        delimiters: ","
 
-        # Reset CSS
-        # 
-        # If you don't want the page style to impact on the look of the text in the editor, 
-        # you will need to apply a reset-css on the editor. 
-        # To activate this feature set `true`
-        resetCss: false
+        # Validate input by RegEx pattern (can also be applied on the input itself as an attribute) Ex: /[1-9]/
+        pattern: null
 
-        # Auto grow
-        #
-        # The text editing zone can extend itself when writing a long text. 
-        # To activate this feature set `true`
-        autogrow: false
-
-        # Auto grow on enter
-        #
-        # The text editing zone can extend itself when editor get focus and reduce on blur. 
-        # To activate this feature set `true`
-        autogrowOnEnter: false
-
-        # URL protocol
-        # 
-        # An option to auto-prefix URLs with a protocol.
-        # When this option is set to true, URLs missing a protocol will be prefixed
-        # with https://. Alternatively, a string can be provided for a custom prefix.
-        # For example, a value of true would convert example.com to https://example.com, 
-        # while a value of ftp converts to ftp://example.com.
-        #
-        # Anchors, email addresses and relative links are left unchanged.
-        urlProtocol: false
-
-        # Image width modal edit 
-        #
-        # Add a field in image insert/edit modal which allow users to set the image width.
-        # To activate this feature set `true`
-        imageWidthModalEdit: false
-
-        # Remove format pasted
-        #
-        # If you don't want styles pasted from clipboard (from Word or other webpage for example),
-        # set the removeformatPasted option to `true`
-        removeformatPasted: true
-
-        # Hide button texts 
-        #
-        # You can hide button texts showed when you put `svgPath` to `false`.
-        # If you disable SVG icons and button texts, you should design them by yourself.
-        hideButtonTexts: false
-
-        # Tags to remove
-        #
-        # Allow to sanitize the code by removing all tags you want. 
-        # The `tagsToRemove` option is an array.
-        tagsToRemove: []
-
-        # Tags to keep 
-        #
-        # Sometimes you want to keep some empty `i` tags for Font Awesome or anything else. 
-        # You can define this list via the `tagsToKeep` option.
-        tagsToKeep: ['hr', 'img', 'embed', 'iframe', 'input']
-
-        # Minimal links
-        # 
-        # Reduce the link overlay to use only `url` and `text` fields, omitting `title` and `target`.
-        minimalLinks: false
-
-        # Default link target
-        #
-        # Allow to set link target attribute value to what you want, even if the `minimalLinks` option is set to `true`.
-        defaultLinkTarget: _blank
-
-        # Tag classes
-        #
-        # Add classes to any tag.
-        # for e.g:
-        #   h1: 'h1', // Bootstrap example
-        #   blockquote: 'bg-grey-100 rounded-xl', // Tailwind CSS example
-        tagClasses: []
+        # Use select for single-value dropdown-like select box. 
+        # See mix as value to allow mixed-content. The 'pattern' setting must be set to some character.
+        mode: null
         
-        # Active dropdown icon
-        #
-        # Dropdown icon can change to the active sub-button icon with this option enabled.
-        # To activate this feature set `true`
-        changeActiveDropdownIcon: false
+        # Interpolation for mix mode. 
+        # Everything between these will become a tag
+        mixTagsInterpolator: ['[[', ']]']
 
-        # Prefix
-        #
-        # Prefix of all class added on elements of Trumbowyg
-        prefix: 'trumbowyg-'
+        # Define conditions in which typed mix-tags content is allowing a tag to be created after.
+        mixTagsAllowedAfter: /,|\.|\:|\s/	
+
+        # Should duplicate tags be allowed or not
+        duplicates: false
+
+        # If `true` trim the tag's value (remove before/after whitespaces)
+        trim: true
+
+        # Should ONLY use tags allowed in whitelist.
+        # In `mix-mode`, setting it to `false` will not allow creating new tags.
+        enforceWhitelist: false
+
+        # Tries to suggest the input's value while typing (match from whitelist) by adding the rest of term as grayed-out text
+        autoComplete.enabled: true
+
+        # If `true`, when `→` is pressed, use the suggested value to create a tag, else just auto-completes the input. 
+        # In mixed-mode this is ignored and treated as "true"
+        rautoComplete.rightKey: false
+
+        # An array of allowed tags (Strings or Objects). 
+        # When using Objects in the whitelist array a `value` property is a must & should be unique. 
+        # Also, the *whitelist used for auto-completion when `autoCompletion.enabled` is `true`
+        whitelist: []
+
+        # An array of tags which aren't allowed
+        blacklist: []
+
+        # Automatically adds the text which was inputed as a tag when blur event happens
+        addTagOnBlur: true
+
+        # `false` or `null` will disallow editing
+        editTags:
+
+          # Number of clicks to enter "edit-mode": 1 for single click. 
+          # Any other value is considered as double-click
+          clicks: 1
+
+          # keeps invalid edits as-is until esc is pressed while in focus
+          keepInvalid: true
         
-        # Disabled
-        disabled: false
+        # If `true`, do not remove tags which did not pass validation
+        keepInvalidTags: false
 
-        # Button pane
-        #
-        # Available buttons: viewHTML, undo, redo, strong, em, del, superscript, subscript, link
-        # insertImage, justifyLeft, justifyCenter, justifyRight, justifyFull, unorderedList, orderedList,
-        # horizontalRule, removeformat, fullscreen
-        btns: []
+        # If `true`, do not add invalid, temporary, tags before automatically removing them
+        skipInvalid: true
 
-        # Plugins
-        #
-        # Available plugins https://alex-d.github.io/Trumbowyg/documentation/plugins/
-        plugins: []
+        # On pressing backspace key:
+        # true - remove last tag 
+        # edit - edit last tag
+        backspace: true
 
-    template: plugins/trumbowyg/blocks/Trumbowyg/block.html
+        # `node` or `string` to add after a tag added
+        mixMode:
+          insertAfterTag: \u00A0
+
+        # allows tags to get focus, and also to be deleted via backspace
+        a11y:
+          focusableTags: false
+        
+        dropdown:
+
+          # Minimum characters input for showing a suggestions list. 
+          # `false` will not render a suggestions list.
+          enabled: 2
+          
+          # if `true`, match exact item when a suggestion is selected (from the dropdown) and also more strict matching for dulpicate items. 
+          # Ensure `fuzzySearch` is `false` for this to work.
+          caseSensitive: false
+
+          # Maximum items to show in the suggestions list
+          maxItems: 10
+
+          # Custom classname for the dropdown suggestions selectbox
+          classname: ""
+
+          # Enables filtering dropdown items values' by string containing and not only beginning
+          fuzzySearch: true
+
+          # Enable searching for accented items in the whitelist without typing exact match
+          accentedSearch: true
+
+          # manual - will not render the dropdown, and you would need to do it yourself. 
+          # text - places the dropdown next to the caret
+          # input - places the dropdown next to the input (useful in rare situations)
+          # all - normal, full-width design
+          position: "all"
+
+          # When a suggestions list is shown, highlight the first item, 
+          # and also suggest it in the input (The suggestion can be accepted with `→` key)
+          highlightFirst: false
+
+          # close the dropdown after selecting an item, if `enabled:0` is set (which means always show dropdown on focus)
+          closeOnSelect: true
+
+          # Keep typed text after selecting a suggestion
+          clearOnSelect: true
+
+          # When a user types something and trying to match the whitelist items for suggestions, 
+          # this setting allows matching other keys of a whitelist objects
+          searchKeys: ["value", "searchBy"]
+
+          # If defined, will force the placement of the dropdown in respect 
+          # to the Boolean value: `true` will always show the suggestions dropdown above the input field a
+          # and `false` will always show it below. 
+          #
+          # By default this setting it not defined and the placement of the dropdown is automatically decided according to the space availble,
+          # where opening it below the input is preferred.
+          placeAbove: ""
+
+    template: plugins/tagify/blocks/Tagify/block.html
 ```
 
 ## LICENSE
