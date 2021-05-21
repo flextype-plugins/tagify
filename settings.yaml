@@ -12,7 +12,6 @@ assetsLoadOnSite: false
 blocks:
   Tagify:
     properties:
-      id: tagify
       name: tagify
       
       # Tagify options
