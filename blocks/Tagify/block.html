@@ -1,9 +1,7 @@
 {% import "plugins/blueprints/blocks/macros/attr.html" as attr %} 
 
 {% if block.properties %}
-    {% set defaultProperties = arrays(flextype.registry.get("plugins.tagify.settings.blocks.Tagify.properties")).toArray() %}
-    {% set blockProperties = arrays(block.properties).toArray() %}
-    {% set properties = arrays(defaultProperties).replace(blockProperties, true).toArray() %}
+    {% set properties = arrays(flextype.registry.get("plugins.tagify.settings.blocks.Tagify.properties")).replace(block.properties, true).toArray() %}
 {% else %}
     {% set properties = flextype.registry.get("plugins.tagify.settings.blocks.Tagify.properties") %}
 {% endif %}
