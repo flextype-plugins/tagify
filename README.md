@@ -20,7 +20,7 @@ The following dependencies need to be downloaded and installed for Tagify Plugin
 
 1. Download & Install all required dependencies.
 2. Create new folder `/project/plugins/tagify`
-3. Download Trumbowyg Plugin and unzip plugin content to the folder `/project/plugins/tagify`
+3. Download Tagify Plugin and unzip plugin content to the folder `/project/plugins/tagify`
 
 ## Documentation
 
@@ -40,8 +40,8 @@ assetsLoadOnSite: false
 # Blocks
 blocks:
   Tagify:
+    type: Tagify
     properties:
-      id: tagify
       name: tagify
       
       # Tagify options
