@@ -14,8 +14,8 @@ namespace Flextype\Plugin\Tagify;
 /**
  * Add Blueprint block `Tagify`
  */
-flextype('registry')->set('plugins.blueprints.settings.blocks.Tagify', 
-                            flextype('registry')->get('plugins.tagify.settings.blocks.Tagify'));                
+registry()->set('plugins.blueprints.settings.blocks.Tagify', 
+                            registry()->get('plugins.tagify.settings.blocks.Tagify'));                
 
 /**
  * Add Tagify assets
@@ -23,12 +23,12 @@ flextype('registry')->set('plugins.blueprints.settings.blocks.Tagify',
 $tagifyCSS[] = 'project/plugins/tagify/blocks/Tagify/dist/css/tagify.min.css';
 $tagifyJS[]  = 'project/plugins/tagify/blocks/Tagify/dist/js/tagify.min.js';
 
-if (flextype('registry')->get('plugins.tagify.settings.assetsLoadOnAdmin')) {
-    flextype('registry')->set('assets.admin.js.tagify', $tagifyJS);
-    flextype('registry')->set('assets.admin.css.tagify', $tagifyCSS);
+if (registry()->get('plugins.tagify.settings.assetsLoadOnAdmin')) {
+    registry()->set('assets.admin.js.tagify', $tagifyJS);
+    registry()->set('assets.admin.css.tagify', $tagifyCSS);
 }
 
-if (flextype('registry')->get('plugins.tagify.settings.assetsLoadOnSite')) {
-    flextype('registry')->set('assets.site.js.tagify', $tagifyJS);
-    flextype('registry')->set('assets.site.css.tagify', $tagifyCSS);
+if (registry()->get('plugins.tagify.settings.assetsLoadOnSite')) {
+    registry()->set('assets.site.js.tagify', $tagifyJS);
+    registry()->set('assets.site.css.tagify', $tagifyCSS);
 }
